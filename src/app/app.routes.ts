@@ -9,11 +9,6 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full',
-      },
-      {
-        path: 'dashboard',
         loadChildren: () =>
           import('./pages/pages.routes').then((m) => m.PagesRoutes),
       },
