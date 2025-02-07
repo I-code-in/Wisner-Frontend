@@ -25,3 +25,12 @@ nvm list
 ```console
 npm install -g yarn
 ```
+
+# Instalar angular
+```console
+npm install -g @angular/cli
+```
+# Agregar una pagina
+```console
+ng g c pages/<nombre de la pagina>
+```

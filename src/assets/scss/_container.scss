@@ -74,7 +74,7 @@ body {
 }
 
 .pageWrapper {
-  padding: 30px;
+  padding: 13vh;
   min-height: calc(100vh - 100px);
   margin: 0 auto;
   &.maxWidth {
@@ -204,4 +204,13 @@ td.hljs-ln-line.hljs-ln-numbers {
 .list-unstyled {
   padding-left: 0;
   list-style: none;
+}
+
+.botom {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  &:hover {
+      background-color: #d4a373; /* Color de fondo cuando se pasa el mouse */
+      color: #fff; /* Cambia el color del texto si lo deseas */
+  }
 }

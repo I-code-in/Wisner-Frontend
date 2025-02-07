@@ -1,0 +1,24 @@
+.text-button {
+    text-decoration: none;
+    color: #6E4A31;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+.text-button:hover {
+    color: #ffd571;
+    background-color: #6E4A31;
+}
+.d-flex {
+    gap: 20px; /* Espaciado entre los enlaces */
+}
+
+.icon-img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) saturate(100%) invert(31%) sepia(15%) saturate(1375%) hue-rotate(341deg) brightness(94%) contrast(92%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.text-button:hover .icon-img {
+    filter: brightness(0) saturate(100%) invert(80%) sepia(40%) saturate(511%) hue-rotate(349deg) brightness(99%) contrast(105%);
+    transition: filter 0.3s ease; /* Hace que el filtro se aplique suavemente */
+}
