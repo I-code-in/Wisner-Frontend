@@ -12,8 +12,6 @@ import { CommonModule } from '@angular/common';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { AppNavItemComponent } from './sidebar/nav-item/nav-item.component';
 import { navItems } from './sidebar/sidebar-data';
 import { AppTopstripComponent } from './top-strip/topstrip.component';
 
@@ -25,10 +23,8 @@ const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
   selector: 'app-full',
   imports: [
     RouterModule,
-    AppNavItemComponent,
     MaterialModule,
     CommonModule,
-    SidebarComponent,
     NgScrollbarModule,
     TablerIconsModule,
     HeaderComponent,
