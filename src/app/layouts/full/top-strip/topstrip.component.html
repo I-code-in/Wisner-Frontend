@@ -1,54 +1,61 @@
-<div class="app-topstrip bg-wisnerBeige p-y-20 p-x-20 w-100 d-lg-flex align-items-center justify-content-between" 
-    style="height: 13vh; max-height: 13vh; overflow: hidden; border: 2vh solid white;">
-    <img src="./assets/images/logos/logo.png" class="align-middle m-2" alt="logo" style="height: 8vh;"/>
+<div class="app-topstrip header-container align-items-center justify-content-between">
+        <div class="header-content d-lg-flex align-items-center justify-content-between">
+            <img src="./assets/images/logos/logo.png" class="align-middle m-2" alt="logo" style="height: 8vh;" />
 
-    <div class="d-flex align-items-center justify-content-center flex-wrap">
-
-        <a class="d-none d-lg-flex text-button p-5" href="#" target="_blank">
-            <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
-                Inicio
-            </div>
-        </a>
-
-        <a class="d-none d-lg-flex text-button p-5" href="#" target="_blank">
-            <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
-                Chocolates
-            </div>
-        </a>
-
-        <a class="d-none d-lg-flex text-button p-5" href="#" target="_blank">
-            <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
-                Quienes somos?
-            </div>
-        </a>
-
-        <a class="d-none d-lg-flex text-button p-5" href="#" target="_blank">
-            <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
-                Tour de chocolates
-            </div>
-        </a>
-
-        <a class="d-none d-lg-flex text-button p-5" href="#" target="_blank">
-            <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
-                Contacto
-            </div>
-        </a>
-        <div class="d-flex align-items-center justify-content-center flex-wrap">
-            <a class="d-none d-lg-flex text-button p-5" href="#" target="_blank">
-                <div class="d-flex align-items-center" style="font-size:x-large;">
-                    <img src="../../../../assets/images/icons/search (1).svg" alt="search" class="icon-img">
+            <div class="d-flex align-items-center justify-content-center flex-wrap p-5">
+                <a class="d-none d-lg-flex text-button p-5" (click)="scrollToComponent('inicio')">
+                    <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
+                        Inicio
+                    </div>
+                </a>
+                <a class="d-none d-lg-flex text-button p-5" (click)="scrollToComponent('chocolates')">
+                    <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
+                        Chocolates
+                    </div>
+                </a>
+                <a class="d-none d-lg-flex text-button p-5" (click)="scrollToComponent('quienes-somos')">
+                    <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
+                        Quienes somos?
+                    </div>
+                </a>
+                <a class="d-none d-lg-flex text-button p-5" (click)="scrollToComponent('tour-chocolates')">
+                    <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
+                        Tour de chocolates
+                    </div>
+                </a>
+                <a class="d-none d-lg-flex text-button p-5" (click)="scrollToComponent('contacto')">
+                    <div class="d-flex align-items-center gap-5 text-montserrat" style="font-size:x-large;">
+                        Contacto
+                    </div>
+                </a>
+                
+                <div class="d-flex align-items-center justify-content-center flex-wrap">
+                    <div class="d-flex align-items-center justify-content-center search-wrapper" [class.active]="isSearchActive">
+                        <input
+                          *ngIf="isSearchActive"
+                          type="text"
+                          class="search-input"
+                          placeholder="Buscar..."
+                          (blur)="toggleSearch()"
+                        />
+                        <a class="d-none d-lg-flex text-button p-5" (click)="scrollToComponent('chocolates')">
+                            <div class="d-flex align-items-center" style="font-size:x-large;" (click)="toggleSearch()">
+                            <img src="../../../../assets/images/icons/search (1).svg" alt="search" class="icon-img" />
+                            </div>
+                        </a>
+                    </div>
+                    <a class="d-none d-lg-flex text-button p-5" href="#">
+                        <div class="d-flex align-items-center" style="font-size:x-large;">
+                            <img src="../../../../assets/images/icons/Shopping cart (1).svg" alt="Shopping cart" class="icon-img" />
+                        </div>
+                    </a>
+                    <a class="d-none d-lg-flex text-button p-5" href="#">
+                        <div class="d-flex align-items-center" style="font-size:x-large;">
+                            <img src="../../../../assets/images/icons/User (1).svg" alt="User" class="icon-img" />
+                        </div>
+                    </a>
                 </div>
-            </a>
-            <a class="d-none d-lg-flex text-button p-5" href="#" target="_blank">
-                <div class="d-flex align-items-center" style="font-size:x-large;">
-                    <img src="../../../../assets/images/icons/Shopping cart (1).svg" alt="Shopping cart" class="icon-img">
-                </div>
-            </a>
-            <a class="d-none d-lg-flex text-button p-5" href="#" target="_blank">
-                <div class="d-flex align-items-center" style="font-size:x-large;">
-                    <img src="../../../../assets/images/icons/User (1).svg" alt="User" class="icon-img">
-                </div>
-            </a>
+            </div>
         </div>
-    </div>
+
 </div>
