@@ -1,16 +1,35 @@
 import { Component, ViewEncapsulation  } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { TablerIconsModule } from 'angular-tabler-icons';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-topstrip',
-    imports: [TablerIconsModule, MatButtonModule, MatMenuModule],
+    standalone: true,
+    imports: [CommonModule],
     templateUrl: './topstrip.component.html',
     styleUrl: './topstrip.component.scss',
     encapsulation: ViewEncapsulation.None,
 })
-export class AppTopstripComponent {
-    constructor() { }
 
+export class AppTopstripComponent {
+    isSearchActive: boolean = false;
+    constructor() {};
+    toggleSearch(): void {
+        this.isSearchActive = !this.isSearchActive;
+    };
+
+    scrollToComponent(targetId: string): void {
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            const offset = (13 / 100) * window.innerHeight; // 13 equivale al 13% de la pantalla
+            //const offset = 10
+            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth', // Desplazamiento suave
+            });
+        }
+    }
 }
