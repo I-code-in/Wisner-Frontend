@@ -1,1 +1,55 @@
-<div class="text-center text-productos"><h1>Nuestros productos</h1></div>
+<div class="container-fluid py-5">
+    <div class="text-center mb-4">
+        <h1 class="text-productos" style="font-size: 2.5rem;">Nuestros productos</h1>
+    </div>
+    <div class="row">
+        <!-- Iteración de productos -->
+        <div class="col-lg-6 col-md-12 mb-4 text-montserrat" *ngFor="let product of products.products">
+            <div class="card text-center" style="background-color: #f6f6f6; border-radius: 10px;">
+                <div class="row">
+                    <div class="col-6">
+                        <img 
+                            [src]="product.image" 
+                            alt="{{ product.name }}" 
+                            class="card-img-top" 
+                            style="height: 200px; object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;"
+                        />
+                    </div>
+                    <div class="col-6">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase" style="color: #00d2ff;">{{ product.name }}</h5>
+                            <p class="card-text" style="color: #00ff00; font-size: 1.2rem;">{{ product.value }} Gs</p>
+                            <div class="d-flex justify-content-around">
+                                <button class="btn btn-danger" style="border-radius: 15px;" (click)="openModal(agregar, product)">Agregar al carrito</button>
+                                <button class="btn btn-secondary" style="border-radius: 15px;" (click)="openModal(ver_producto, product)">Ver producto</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #ver_producto let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">{{ modalData?.name }}</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <p>{{ modalData?.description }}</p>
+      <strong>Ingredientes:</strong><p>{{ modalData?.ingredients }}</p>
+    </div>
+</ng-template>
+<ng-template #agregar let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">{{ modalData?.name }}</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <p>{{ modalData?.description }}</p>
+      <strong>Ingredientes:</strong><p>{{ modalData?.ingredients }}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Agregar</button>
+    </div>
+</ng-template>
