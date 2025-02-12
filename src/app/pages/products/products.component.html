@@ -1,10 +1,10 @@
-<div class="container-fluid py-5">
+<div class="container-fluid py-5" style="min-height: 100%;">
     <div class="text-center mb-4">
         <h1 class="text-productos" style="font-size: 2.5rem;">Nuestros productos</h1>
     </div>
     <div class="row">
         <!-- Iteración de productos -->
-        <div class="col-lg-6 col-md-12 mb-4 text-montserrat" *ngFor="let product of products.products">
+        <div class="col-lg-6 col-md-12 mb-4 text-montserrat" *ngFor="let product of products.items">
             <div class="card text-center" style="background-color: #f6f6f6; border-radius: 10px;">
                 <div class="row">
                     <div class="col-6">
