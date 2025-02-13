@@ -1,8 +1,8 @@
 .container {
-    display: flex;
-    flex-direction: column;
     height: auto;
+    width: auto;
     margin: 0;
+    max-width: 100% !important;
 }
 .container > * {
     height: 100vh;
@@ -10,8 +10,13 @@
     flex-shrink: 0;
     box-sizing: border-box;
 }
-#chocolates{
+#chocolates {
     background-color: aliceblue;
+    height: auto;
+    min-height: 87vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 #tour-chocolates{
     background-color: #e4bc89;
