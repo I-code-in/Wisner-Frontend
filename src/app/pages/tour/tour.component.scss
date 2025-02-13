@@ -1,0 +1,25 @@
+.text-tour{
+font-family: Maragsa;
+    color: #6E4A31;
+font-size: 32px;
+}
+
+.text-title{
+font-family: Aventa;
+color: #6E4A31;
+font-size: 32px;
+font-weight: bolder;
+}
+
+.text-body{
+font-family: Aventa;
+color: #6E4A31;
+font-size: 24px;
+}
+
+.icon-img {
+    width: 128px;
+    height: 128px;
+    filter: brightness(0) saturate(100%) invert(31%) sepia(15%) saturate(1375%) hue-rotate(341deg) brightness(94%) contrast(92%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
