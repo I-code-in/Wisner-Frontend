@@ -14,6 +14,7 @@ export interface Product {
     active:         boolean;
     prepared_by_id: number;
     id:             number;
+    image:          string;
     prepared_by:    PreparedBy;
 }
 
@@ -28,4 +29,13 @@ export interface PreparedBy {
     re:      string;
     rspa:    string;
     id:      number;
+}
+
+export interface Ingredients {
+    energy_value:       string;
+    portion:            string;
+    amount_per_serving: string;
+    active:             boolean;
+    id:                 number;
+    product_id:         number;
 }

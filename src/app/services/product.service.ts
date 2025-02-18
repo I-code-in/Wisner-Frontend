@@ -23,4 +23,8 @@ export class ProductService {
   getProductsById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/products/${id}`);
   }
+
+  getIngredientsById(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/products/ingredients/${id}`);
+  }
 }
