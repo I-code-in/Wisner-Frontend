@@ -9,19 +9,19 @@
         <div class="col">
             <div class="d-flex align-items-center justify-content-end flex-wrap">
                 <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('inicio')">
-                    <span class="text-montserrat fs-4">Inicio</span>
+                    <span class="text-aventa fs-4">Inicio</span>
                 </a>
                 <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('chocolates')">
-                    <span class="text-montserrat fs-4">Chocolates</span>
+                    <span class="text-aventa fs-4">Chocolates</span>
                 </a>
                 <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('quienes-somos')">
-                    <span class="text-montserrat fs-4">¿Quiénes somos?</span>
+                    <span class="text-aventa fs-4">¿Quiénes somos?</span>
                 </a>
                 <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('tour-chocolates')">
-                    <span class="text-montserrat fs-4">Tour de chocolates</span>
+                    <span class="text-aventa fs-4">Tour de chocolates</span>
                 </a>
                 <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('contacto')">
-                    <span class="text-montserrat fs-4">Contacto</span>
+                    <span class="text-aventa fs-4">Contacto</span>
                 </a>
                 <!-- Búsqueda -->
                 <div class="search-wrapper position-relative">
@@ -38,7 +38,7 @@
                 </div>
     
                 <!-- Carrito -->
-                <a class="text-button" href="#">
+                <a class="text-button" (click)="openModal(carrito)">
                     <img src="../../../../assets/images/icons/Shopping cart (1).svg" alt="Shopping cart" class="icon-img" />
                 </a>
     
@@ -50,4 +50,16 @@
         </div>
     </div>
 </div>
-
+<ng-template #carrito let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">Mi Carrito</h5>
+      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <app-cart></app-cart>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Cancelar</button>
+        <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Pasar a pagar</button>
+    </div>
+</ng-template>
