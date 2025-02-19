@@ -38,20 +38,20 @@ npm install -l @angular/cli
 ```
 
 ## Instalar dependencias
-'''console
+```console
 yarn install
-'''
+```
 
 ## levantar el proyecto
-'''console
+```console
 yarn start
-'''
+```
 
 ### Agregar dependencia
 ejemplo:
-'''console
+```console
 yarn add <dependensia>
-'''
+```
 
 ## Agregar una pagina
 ```console
