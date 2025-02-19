@@ -1,10 +1,12 @@
 import { Component, ViewEncapsulation  } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CartComponent } from 'src/app/components/cart/cart.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-topstrip',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, CartComponent],
     templateUrl: './topstrip.component.html',
     styleUrl: './topstrip.component.scss',
     encapsulation: ViewEncapsulation.None,
@@ -12,7 +14,7 @@ import { CommonModule } from '@angular/common';
 
 export class AppTopstripComponent {
     isSearchActive: boolean = false;
-    constructor() {};
+    constructor(private modalService: NgbModal) {};
     toggleSearch(): void {
         this.isSearchActive = !this.isSearchActive;
     };
@@ -32,4 +34,8 @@ export class AppTopstripComponent {
             });
         }
     }
+
+    openModal(content: any) {
+        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'xl' });
+      }
 }

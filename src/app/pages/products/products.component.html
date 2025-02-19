@@ -1,27 +1,36 @@
-<div class="container-fluid py-5">
+<div class="container-fluid py-5" style="min-height: 100%;">
     <div class="text-center mb-4">
         <h1 class="text-productos" style="font-size: 2.5rem;">Nuestros productos</h1>
     </div>
     <div class="row">
         <!-- Iteración de productos -->
-        <div class="col-lg-6 col-md-12 mb-4 text-montserrat" *ngFor="let product of products.products">
-            <div class="card text-center" style="background-color: #f6f6f6; border-radius: 10px;">
+        <div class="col-lg-6 col-md-12 mb-4 text-aventa" *ngFor="let product of products">
+            <div class="card text-center" style="background-color: #6E4A31; border-radius: 10px;">
                 <div class="row">
                     <div class="col-6">
                         <img 
-                            [src]="product.image" 
+                            [src]="'data:image/png;base64,' + product.image" 
                             alt="{{ product.name }}" 
                             class="card-img-top" 
-                            style="height: 200px; object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;"
+                            style="height: 200px; object-fit: cover; border-top-left-radius: 10px; border-bottom-left-radius: 10px;"
                         />
                     </div>
                     <div class="col-6">
                         <div class="card-body">
-                            <h5 class="card-title text-uppercase" style="color: #00d2ff;">{{ product.name }}</h5>
-                            <p class="card-text" style="color: #00ff00; font-size: 1.2rem;">{{ product.value }} Gs</p>
+                            <h5 class="card-title text-uppercase" style="color: white;">{{ product.name }}</h5>
+                            <p class="card-text" style="color: white; font-size: 1.2rem;">{{ product.value }} Gs</p>
                             <div class="d-flex justify-content-around">
-                                <button class="btn btn-danger" style="border-radius: 15px;" (click)="openModal(agregar, product)">Agregar al carrito</button>
-                                <button class="btn btn-secondary" style="border-radius: 15px;" (click)="openModal(ver_producto, product)">Ver producto</button>
+                                <div *ngIf="getQuantity(product) === 0; else inCart">
+                                    <button class="btn custom-btn" style="border-radius: 15px;" (click)="addToCart(product)">Agregar al carrito</button>
+                                </div>
+                                <ng-template #inCart>
+                                    <div class="cart-container">
+                                      <button class="btn custom-btn btn-sm" (click)="removeFromCart(product)">-</button>
+                                      <span class="quantity-display mx-5" style="color: white;">{{ getQuantity(product) }} un.</span>
+                                      <button class="btn custom-btn btn-sm" (click)="addToCart(product)">+</button>
+                                    </div>
+                                </ng-template>
+                                <button class="btn custom-btn" style="border-radius: 15px;" (click)="openModal(ver_producto, product)">Ver producto</button>
                             </div>
                         </div>
                     </div>
@@ -31,25 +40,37 @@
     </div>
 </div>
 <ng-template #ver_producto let-modal>
-    <div class="modal-header">
-      <h5 class="modal-title" id="modal-basic-title">{{ modalData?.name }}</h5>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    <div class="modal-header text-aventa">
+      <h5 class="modal-title text-aventa" id="modal-basic-title">{{ modalData?.name }}</h5>
+      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
     </div>
     <div class="modal-body">
-      <p>{{ modalData?.description }}</p>
-      <strong>Ingredientes:</strong><p>{{ modalData?.ingredients }}</p>
+        <div class="text-center text-aventa"><h5><strong>Ingredientes</strong></h5></div>
+        <p class="text-aventa-normal">{{ modalData?.description }}</p>
+        <p class="text-aventa"><strong>{{ modalData?.warning }}</strong></p>
+        <div class="text-center text-aventa"><h5><strong>Información Nuticional</strong></h5></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-4 text-aventa table-custom"></th>
+                    <th class="col-4 text-aventa table-custom"><p>Porción de 25g <br> (5 cuadros aprox.)</p></th>
+                    <th class="col-4 text-aventa table-custom"><p>Cantidad por porcion % V.D.</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let record of modalIngredients">
+                    <th class="text-aventa table-custom">{{ record?.energy_value }}</th>
+                    <th class="text-aventa table-custom"><p>{{ record?.portion }}</p></th>
+                    <th class="text-aventa table-custom"><p>{{ record?.amount_per_serving }}</p></th>
+                </tr>
+            </tbody>
+        </table>
+        
     </div>
-</ng-template>
-<ng-template #agregar let-modal>
-    <div class="modal-header">
-      <h5 class="modal-title" id="modal-basic-title">{{ modalData?.name }}</h5>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
-    </div>
-    <div class="modal-body">
-      <p>{{ modalData?.description }}</p>
-      <strong>Ingredientes:</strong><p>{{ modalData?.ingredients }}</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Agregar</button>
+    <div class="modal-footer justify-content-start">
+        <p class="text-aventa">
+            * Valores diarios de referencia en base a una dieta de 2.000 kcal.u 8400 Kj. Sus valores diarios pueden ser mayores o menores dependiendo de sus necesidades energéticas.
+        </p>
+        <p class="text-aventa">** Valores diarios no establecidos.</p>
     </div>
 </ng-template>
