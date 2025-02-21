@@ -2,7 +2,13 @@
 ## Node version manager (nvm)
 Sirve para gestioner multiples versiones de node
 * Windows
-descargar nvm (nvm-setup.exe): https://github.com/coreybutler/nvm-windows/releases 
+descargar nvm (nvm-setup.exe): https://github.com/coreybutler/nvm-windows/releases
+
+* Uvuntu
+```console
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+```
 
 ## Instalar node
 Version node (18.13.0 o superior) (20.11.1 recomendada)
@@ -32,14 +38,20 @@ npm install -l @angular/cli
 ```
 
 ## Instalar dependencias
-'''consola
+```console
 yarn install
-'''
+```
+
+## levantar el proyecto
+```console
+yarn start
+```
 
 ### Agregar dependencia
-'''consola
-yarn add <bootstrap@5.3.3>
-'''
+ejemplo:
+```console
+yarn add <dependensia>
+```
 
 ## Agregar una pagina
 ```console

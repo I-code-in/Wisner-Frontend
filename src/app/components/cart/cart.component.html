@@ -1,0 +1,44 @@
+<div class="container">
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td>
+              <img [src]="'data:image/png;base64,' + item.product.image" alt="{{ item.product.name }}" width="50" />
+            </td>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.value }} Gs.</td>
+            <td>
+              <input
+                type="number"
+                [value]="item.quantity"
+                (change)="updateQuantity(item.product.id, $event)"
+                class="form-control"
+                min="1"
+              />
+            </td>
+            <td>{{ item.product.value * item.quantity }} Gs.</td>
+            <td>
+              <button class="btn custom-btn btn-sm" (click)="removeItem(item.product.id)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn custom-btn" (click)="clearCart()">Vaciar Carrito</button>
+    </div>
+    <ng-template #emptyCart>
+      <p>El carrito está vacío.</p>
+    </ng-template>
+  </div>
