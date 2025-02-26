@@ -1,6 +1,6 @@
 {
-  "name": "materialM",
-  "version": "3.0.0",
+  "name": "wisner",
+  "version": "0.1.0",
   "scripts": {
     "prestart": "node env.js",
     "ng": "ng",
@@ -21,11 +21,14 @@
     "@angular/platform-browser": "^19.0.5",
     "@angular/platform-browser-dynamic": "^19.0.5",
     "@angular/router": "^19.0.5",
+    "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@ng-matero/extensions": "^17.0.0",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "@popperjs/core": "^2.11.8",
     "angular-tabler-icons": "^2.7.0",
     "apexcharts": "^3.40.0",
+    "bootstrap": "5.3.3",
     "dotenv": "^16.4.7",
     "iconify": "^1.4.0",
     "ng-apexcharts": "^1.7.6",
