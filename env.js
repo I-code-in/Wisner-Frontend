@@ -15,6 +15,7 @@ const envFileContent = `
     production: ${envConfig.NODE_ENV === 'production'},
     API_URL: '${envConfig.API_URL}',
     PORT: ${envConfig.PORT || 4200},
+    BACKEND: '${envConfig.BACKEND || "http://127.0.0.1:8000"}'
   };
 `;
 
