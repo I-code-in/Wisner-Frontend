@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-//import * as dotenv from 'dotenv';
-
-
-//dotenv.config();
+import { environment } from 'src/environments/environment';;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  //private apiUrl = process.env['BACKEND'];
-  private apiUrl = 'http://127.0.0.1:8000'
+  private apiUrl = environment.BACKEND;
 
   constructor(private http: HttpClient) {}
 
