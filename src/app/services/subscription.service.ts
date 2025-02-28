@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubscriptionService {
-  private apiUrl = 'http://localhost:8000/suscripcion';  
+  private apiUrl = environment.BACKEND;
   constructor(private http: HttpClient) {}
 
   subscribe(email: string): Observable<any> {
