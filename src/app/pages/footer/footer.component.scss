@@ -1,0 +1,70 @@
+.footer-container {
+    background-color:#D6BDCF;
+    padding: 20px ;
+    cursor: default;
+    width: 100%;
+}
+
+// Titulos
+.menu-title, .contact-title {
+    font-family: 'Maragsa';
+    font-size: 32px;
+}
+
+.suscription-title{
+    font-family: 'Aventa';
+    font-size: 32px;   
+}
+
+
+//items
+.menu-item, .contact-item {
+    text-decoration: none;
+    font-family: 'Aventa';
+    font-size: 24px;
+    color: rgb(41, 15, 15);
+    word-wrap: break-word;
+}
+
+
+.menu-item a {
+    text-decoration: none !important;
+    cursor: pointer;
+    color: inherit;
+    word-wrap: break-word;
+}
+
+input::placeholder {
+    font-family: 'Aventa', sans-serif;
+    font-size: 18px;  
+    color: rgb(41, 15, 15);     
+    opacity: 1;      
+}
+
+//botones
+.socialmedia-button {
+    background: #D6BDCF;  
+    border: none;
+    cursor: pointer;
+}
+
+.subscribe-button {
+    background: #fff;  
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    height: 50px;
+    color:rgb(41, 15, 15);
+    font-family: 'Aventa';
+    font-weight: bold;
+}
+
+.subscribe-button:hover {
+    background: #753d09;  
+    color: #ecc74b;
+}
+
+
+
+
+

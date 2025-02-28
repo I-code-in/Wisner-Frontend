@@ -13,6 +13,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { navItems } from './sidebar/sidebar-data';
 import { AppTopstripComponent } from './top-strip/topstrip.component';
+import { FooterComponent } from 'src/app/pages/footer/footer.component';
 
 const MOBILE_VIEW = 'screen and (max-width: 768px)';
 const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
@@ -26,7 +27,8 @@ const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
     CommonModule,
     NgScrollbarModule,
     TablerIconsModule,
-    AppTopstripComponent
+    AppTopstripComponent,
+    FooterComponent
   ],
   templateUrl: './full.component.html',
   styleUrls: [],
