@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
-
+import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule
   ],
   providers: [
     provideHttpClient() // Configuración recomendada
