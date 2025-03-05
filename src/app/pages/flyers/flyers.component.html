@@ -1,10 +1,21 @@
-<div class="container text-center">
-  <div class="row">
-    <div class="col-10 image-up">
-      Column
-    </div>
-    <div class="col-2 image-down">
-      Column
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col position-relative " style="height: 800px; width:100%;">
+      
+      <img #sliderImage [src]="getCurrentSlideUrl()" class="img-fluid rounded shadow-sm d-block mx-auto"
+        style="width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease-in-out;">
+
+      <!-- Flecha Izquierda -->
+      <button (click)="getPrevSlider()" 
+        class="btn btn-dark position-absolute top-50 start-0 translate-middle-y ms-2">
+        &#10094;
+      </button>
+
+      <!-- Flecha Derecha -->
+      <button (click)="getNextSlider()" 
+        class="btn btn-dark position-absolute top-50 end-0 translate-middle-y me-2">
+        &#10095;
+      </button>
     </div>
   </div>
 </div>
