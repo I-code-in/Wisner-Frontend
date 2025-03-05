@@ -4,7 +4,6 @@ import { ProductsComponent } from '../products/products.component';
 import { WhoWeAreComponent } from '../who-we-are/who-we-are.component';
 import { TourComponent } from '../tour/tour.component';
 import { ContactComponent } from '../contact/contact.component';
-import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +12,7 @@ import { FooterComponent } from '../footer/footer.component';
     ProductsComponent,
     WhoWeAreComponent,
     TourComponent,
-    ContactComponent,
-    FooterComponent
+    ContactComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
