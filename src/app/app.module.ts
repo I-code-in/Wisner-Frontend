@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
+import { FooterComponent } from './pages/footer/footer.component';
+import { SubscriptionService } from './services/subscription.service';
 import { AppComponent } from './app.component';
+
 
 @NgModule({
   declarations: [
@@ -10,9 +13,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule, 
+    AppComponent,
+    FooterComponent
   ],
   providers: [
-    provideHttpClient() // Configuración recomendada
+    SubscriptionService
   ],
   bootstrap: [AppComponent]
 })
