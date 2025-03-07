@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubscriptionService {
-  private apiUrl = environment.BACKEND;
+export class SuscripcionService {
+  private apiUrl = 'http://localhost:8000/suscripcion';  
+
   constructor(private http: HttpClient) {}
 
-  subscribe(email: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl, { email: email });    
+  suscribirse(email: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl, { email }).pipe(
+      catchError(error => {
+        return throwError(() => new Error(error.error?.detail || "Hubo un error al suscribirse."));
+      })
+    );
   }
 }

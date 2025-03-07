@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { SubscriptionService } from 'src/app/services/subscription.service';
+import { SuscripcionService } from '/home/maria/Wisner-proyecto/Wisner-Frontend/src/app/services/subscription.service';
+
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-footer',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
@@ -20,21 +23,24 @@ export class FooterComponent {
     };
   }
   email: string = '';
-  constructor(private subscriptionService: SubscriptionService) {}
+  mensajeError: string = '';  
+
+  constructor(private SuscripcionService: SuscripcionService) {}
+
   subscribe() {
-    if (!this.email.includes('@')) {
-      alert('Ingrese un correo válido');
+    if (!this.email || !this.email.includes('@')) {
+      alert('Por favor ingresa un correo electrónico válido.');
       return;
     }
-
-    this.subscriptionService.subscribe(this.email).subscribe({
+    this.SuscripcionService.suscribirse(this.email).subscribe({
       next: (response) => {
         alert('¡Gracias por suscribirte!');
       },
-      error: (error) => {
-        alert('Hubo un error al suscribirse. Intenta de nuevo.');
+      error: (error:HttpErrorResponse) => {
+        this.mensajeError = error.message;  
       }
-    });    
+    });
   }
 }
+
 

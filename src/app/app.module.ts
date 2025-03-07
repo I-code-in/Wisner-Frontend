@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { FooterComponent } from './pages/footer/footer.component';
-import { SubscriptionService } from './services/subscription.service';
+import { SuscripcionService } from './services/subscription.service';
 import { AppComponent } from './app.component';
+
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { AppComponent } from './app.component';
     FooterComponent
   ],
   providers: [
-    SubscriptionService
+    SuscripcionService
   ],
   bootstrap: [AppComponent]
 })
