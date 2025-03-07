@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ContactoService } from 'src/app/services/contacto.service';
 
 
 @Component({
@@ -14,11 +14,14 @@ import { CommonModule } from '@angular/common';
 export class ContactComponent {
   formulario: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private contactoService: ContactoService
+  ) {
     this.formulario = this.fb.group({
       nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], 
+      telefono: ['', [Validators.required, Validators.pattern(/^\+?[0-9]\d{1,14}$/)]], 
       mensaje: ['', Validators.required]
     });
   }
@@ -31,7 +34,7 @@ export class ContactComponent {
 
     const datosFormulario = this.formulario.value;
 
-    this.http.post('http://127.0.0.1:8000/contacto', datosFormulario)
+    this.contactoService.postContacto(datosFormulario)
       .subscribe({
         next: response => {
           console.log('Formulario enviado con éxito:', response);
