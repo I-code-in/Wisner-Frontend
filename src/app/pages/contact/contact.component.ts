@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ContactoService } from 'src/app/services/contacto.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class ContactComponent {
 
   constructor(
     private fb: FormBuilder,
-    private contactoService: ContactoService
+    private contactoService: ContactoService,
+    private toastService: ToastService
   ) {
     this.formulario = this.fb.group({
       nombre: ['', Validators.required],
@@ -37,13 +39,11 @@ export class ContactComponent {
     this.contactoService.postContacto(datosFormulario)
       .subscribe({
         next: response => {
-          console.log('Formulario enviado con éxito:', response);
-          alert('Formulario enviado con éxito.');
+          this.toastService.showToast('Mensaje enviado con éxito.', true);
           this.formulario.reset();
         },
         error: error => {
-          console.error('Error al enviar el formulario:', error);
-          alert('Hubo un error al enviar el formulario.');
+          this.toastService.showToast('Hubo un error al enviar el mensaje.', false);
         }
       });
   }
