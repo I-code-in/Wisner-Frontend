@@ -1,1 +1,43 @@
-<p>contact works!</p>
+<div class="bg-contact100 container-fluid py-5">
+    <div class="wrap-contact100 row">
+            <div class="contact-menu col-md-4 d-flex flex-column justify-content-center">
+                <h3 class="contact-menu-title">Contacto</h3>
+                <p>Ubicacion</p>
+                <p>Email: ejemplo&#64;email</p>
+                <p>Tel:+595 595959</p>
+            </div>
+            <div class="contact100-form col-md-4 py-5">
+                <form (ngSubmit)="enviarFormulario()" [formGroup]="formulario">
+                    <div class="wrap-input100 mb-3">
+                        <input class="input100" type="text" placeholder="Nombre" formControlName="nombre">
+                        <div *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched">
+                            <small class="text-danger">El nombre es requerido</small>
+                        </div>
+                    </div>
+                    <div class="wrap-input100 mb-3">
+                        <input class="input100" type="email" placeholder="Email" formControlName="email">
+                        <div *ngIf="formulario.get('email')?.invalid && formulario.get('email')?.touched">
+                            <small class="text-danger" *ngIf="formulario.get('email')?.errors?.['required']">El email es requerido</small>
+                            <small class="text-danger" *ngIf="formulario.get('email')?.errors?.['email']">El email no es válido</small>
+                        </div>
+                    </div>
+                    <div class="wrap-input100 mb-3">
+                        <input class="input100" type="text" placeholder="Teléfono" formControlName="telefono">
+                        <div *ngIf="formulario.get('telefono')?.invalid && formulario.get('telefono')?.touched">
+                            <small class="text-danger" *ngIf="formulario.get('telefono')?.errors?.['required']">El teléfono es requerido</small>
+                            <small class="text-danger" *ngIf="formulario.get('telefono')?.errors?.['pattern']">Debe ser un número de 10 dígitos</small>
+                        </div>
+                    </div>
+                    <div class="wrap-input100 mb-3">
+                        <textarea class="input100" placeholder="Mensaje" formControlName="mensaje"></textarea>
+                        <div *ngIf="formulario.get('mensaje')?.invalid && formulario.get('mensaje')?.touched">
+                            <small class="text-danger">El mensaje es requerido</small>
+                        </div>
+                    </div>
+                    <div class="container-contact100-btn text-center mt-3">
+                        <button type="submit" class="contact100-form-btn" [disabled]="formulario.invalid">Enviar</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
