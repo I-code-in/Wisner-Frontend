@@ -43,9 +43,25 @@
                 </a>
     
                 <!-- Usuario -->
-                <a class="text-button" href="#">
-                    <img src="../../../../assets/images/icons/User (1).svg" alt="User" class="icon-img" />
-                </a>
+                <div class="dropdown" [ngClass]="{'text-button':!username}">
+                    <a class="dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
+                        <ng-container *ngIf="username; else defaultUserIcon">
+                            <div class="text-aventa user-icon">{{ username[0] }}</div>
+                        </ng-container>
+                        <ng-template #defaultUserIcon>
+                            <img src="../../../../assets/images/icons/User (1).svg" alt="User" class="icon-img" />
+                        </ng-template>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" data-bs-container="body">
+                        <ng-container *ngIf="username; else guestOptions">
+                            <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
+                        </ng-container>
+                        <ng-template #guestOptions>
+                            <li><a class="dropdown-item" (click)="openModal(login,'md')">Ingresar</a></li>
+                            <li><a class="dropdown-item" (click)="openModal(register,'md')">Registrarse</a></li>
+                        </ng-template>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -61,5 +77,23 @@
     <div class="modal-footer">
         <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Cancelar</button>
         <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Siguiente</button>
+    </div>
+</ng-template>
+<ng-template #login let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">Ingresar</h5>
+      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <app-login (refreshRequested)="refreshData()" [register]="false"></app-login>
+    </div>
+</ng-template>
+<ng-template #register let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">Registrarse</h5>
+      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <app-login (refreshRequested)="refreshData()" [register]="true"></app-login>
     </div>
 </ng-template>

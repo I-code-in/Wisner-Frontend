@@ -1,12 +1,12 @@
-import { Component, ViewEncapsulation  } from '@angular/core';
+import { Component, ViewEncapsulation, Input  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartComponent } from 'src/app/components/cart/cart.component';
+import { LoginComponent } from 'src/app/components/login/login.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
     selector: 'app-topstrip',
     standalone: true,
-    imports: [CommonModule, CartComponent],
+    imports: [CommonModule, CartComponent, LoginComponent],
     templateUrl: './topstrip.component.html',
     styleUrl: './topstrip.component.scss',
     encapsulation: ViewEncapsulation.None,
@@ -14,10 +14,17 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class AppTopstripComponent {
     isSearchActive: boolean = false;
-    constructor(private modalService: NgbModal) {};
+    username: string | null = null;
+    constructor(
+        private modalService: NgbModal,
+    ) {};
     toggleSearch(): void {
         this.isSearchActive = !this.isSearchActive;
     };
+
+    ngOnInit() {
+        this.loadUser();
+    }
 
     scrollToComponent(targetId: string): void {
         const targetElement = document.getElementById(targetId);
@@ -35,7 +42,23 @@ export class AppTopstripComponent {
         }
     }
 
-    openModal(content: any) {
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'xl' });
+    openModal(content: any, size: string = 'xl') {
+        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: size });
+    }
+
+    loadUser() {
+        this.username = localStorage.getItem('username');
+        console.log(this.username)
+    }
+
+    logout() {
+        localStorage.removeItem('username');
+        localStorage.removeItem('token');
+        this.username = null;
+    }
+
+    refreshData() {
+        // Lógica para refrescar los datos o actualizar el estado
+        this.loadUser();
       }
 }
