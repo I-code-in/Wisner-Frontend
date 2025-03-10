@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { StarterComponent } from './starter/starter.component';
 import { HomeComponent } from './home/home.component';
 
 export const PagesRoutes: Routes = [ 
@@ -12,16 +11,5 @@ export const PagesRoutes: Routes = [
         { title: 'Home', url: '' },
       ],
     },
-  },
-  {
-    path: '',
-    component: StarterComponent,
-    data: {
-      title: 'Starter',
-      urls: [
-        { title: 'Dashboard', url: '/dashboard' },
-        { title: 'Starter' },
-      ],
-    },
-  },
+  }
 ];
