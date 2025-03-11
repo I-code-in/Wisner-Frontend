@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { SuscripcionService } from '/home/maria/Wisner-proyecto/Wisner-Frontend/src/app/services/subscription.service';
-
+import { SubscriptionService } from 'src/app/services/subscription.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastService } from 'src/app/services/toast.service';
 
 
 @Component({
@@ -25,19 +25,23 @@ export class FooterComponent {
   email: string = '';
   mensajeError: string = '';  
 
-  constructor(private SuscripcionService: SuscripcionService) {}
+  constructor(
+    private suscripcionService: SubscriptionService,
+    private toastService: ToastService
+  ) {}
 
   subscribe() {
     if (!this.email || !this.email.includes('@')) {
-      alert('Por favor ingresa un correo electrónico válido.');
+      this.toastService.showToast('Por favor ingresa un correo electrónico válido.',false)
       return;
     }
-    this.SuscripcionService.suscribirse(this.email).subscribe({
+    this.suscripcionService.suscribirse(this.email).subscribe({
       next: (response) => {
-        alert('¡Gracias por suscribirte!');
+        this.toastService.showToast('¡Gracias por suscribirte!',true)
       },
-      error: (error:HttpErrorResponse) => {
-        this.mensajeError = error.message;  
+      error: (error) => {
+        console.log(error);
+        this.toastService.showToast(error.error.detail,false)
       }
     });
   }
