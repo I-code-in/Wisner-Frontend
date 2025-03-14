@@ -42,3 +42,13 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+.firebase/
+
+# Configuración de Firebase
+firebase.json
+.firebaserc
+serviceAccountKey.json
+
+# Archivos de log y sistema
+*.log
