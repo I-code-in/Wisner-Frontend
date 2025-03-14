@@ -2,7 +2,7 @@
     <div class="row align-items-center justify-content-between header-content-custom">
         <!-- Logo -->
         <div class="col-auto">
-            <img src="./assets/images/logos/logo.png" class="align-middle m-2" alt="logo" style="height: 8vh;" />
+            <img src="./assets/images/logos/logo.png" class="align-middle m-2 " alt="logo" style="height: 8vh;" />
         </div>
 
         <!-- Navegación -->
@@ -68,32 +68,32 @@
 </div>
 <ng-template #carrito let-modal>
     <div class="modal-header">
-      <h5 class="modal-title" id="modal-basic-title">Mi Carrito</h5>
-      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
-    </div>
-    <div class="modal-body">
-      <app-cart></app-cart>
-    </div>
-    <div class="modal-footer">
+      <h5 class="modal-title">Mi Carrito</h5>
+      <button type="button" class="btn-close btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+            </div>
+            <div class="modal-body">
+                <app-cart></app-cart>
+            </div>
+            <div class="modal-footer">
         <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Cancelar</button>
         <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Siguiente</button>
     </div>
 </ng-template>
 <ng-template #login let-modal>
-    <div class="modal-header">
-      <h5 class="modal-title" id="modal-basic-title">Ingresar</h5>
-      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
-    </div>
-    <div class="modal-body">
-      <app-login (refreshRequested)="refreshData()" [register]="false"></app-login>
+            <div class="modal-header">
+                <h5 class="modal-title">Ingresar</h5>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+            </div>
+            <div class="modal-body">
+                <app-login (refreshRequested)="refreshData()" [register]="false"></app-login>
     </div>
 </ng-template>
 <ng-template #register let-modal>
-    <div class="modal-header">
-      <h5 class="modal-title" id="modal-basic-title">Registrarse</h5>
-      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
-    </div>
-    <div class="modal-body">
-      <app-login (refreshRequested)="refreshData()" [register]="true"></app-login>
+            <div class="modal-header">
+      <h5 class="modal-title" id="modal-title">Registrarse</h5>
+      <button type="button" class="btn-close btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+            </div>
+            <div class="modal-body">
+                <app-login (refreshRequested)="refreshData()" [register]="true"></app-login>
     </div>
 </ng-template>
