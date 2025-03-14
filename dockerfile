@@ -12,7 +12,7 @@ RUN yarn build
 
 FROM nginx:alpine
 
-COPY --from=build /app/dist/materialm /usr/share/nginx/html
+COPY --from=build /app/dist/wisner /usr/share/nginx/html
 
 EXPOSE 80
 
