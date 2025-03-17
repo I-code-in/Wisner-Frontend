@@ -2,11 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   overflow-wrap: break-word;
-  max-width: 100%;
+  //max-width: 100%;
   justify-content: center;
   align-items: center; 
   height: 80%;
   overflow: hidden;
+  min-width: 90vh;
+  min-height: 80vh;
 }
 
 .row {
@@ -44,6 +46,11 @@ img.logo{
 }
 
 @media (max-width: 768px) { /* Para tablets y móviles */
+  .container {
+    min-width: auto;
+    min-height: auto;
+    max-width: 100%;
+  }
   .title {
       font-size: 1.5rem;
   }
@@ -58,6 +65,11 @@ img.logo{
 }
 
 @media (max-width: 576px) { /* Para iPhone 12 y móviles pequeños */
+  .container {
+    min-width: auto;
+    min-height: auto;
+    max-width: 100%;
+  }
   .title {
       font-size: 1rem;
   }

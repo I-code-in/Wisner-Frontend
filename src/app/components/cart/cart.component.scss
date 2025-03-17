@@ -1,16 +1,38 @@
-.custom-btn {
-  background-color: #6E4A31;
-  color: white;
-  border: none;
+/* Imagen del producto en la tabla */
+.product-img {
+  width: 50px;
+  height: auto;
+  max-width: 100%;
 }
 
-.custom-btn:hover {
-background-color: #ffd571;
-color: #6E4A31;
+/* Input de cantidad */
+.input-quantity {
+  max-width: 60px;
+  text-align: center;
 }
 
-.row {
-  margin: 20px 0 20px 0;
-  padding: 20px;
-  gap: 20px;
+/* Tabla responsive */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
+/* Botones responsivos */
+.btn.custom-btn {
+  width: 100%;
+  max-width: 200px;
+}
+
+/* En móviles, los botones están en columna */
+@media (max-width: 768px) {
+  .d-flex.flex-md-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn.custom-btn {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+}
+

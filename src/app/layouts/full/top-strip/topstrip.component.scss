@@ -1,6 +1,6 @@
 /* Contenedor principal */
 .header-container {
-    height: 15vh;
+    height: auto;
     max-height: 15vh;
     width: 100%;
     overflow: visible !important;
@@ -15,6 +15,41 @@
     background-color: white; /* Color del fondo interno */
     z-index: -1; /* Para que no tape el contenido */
     border: 1px solid black;
+}
+
+/* Menú hamburguesa */
+.navbar-toggler {
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+#navbarMenu {
+  flex-direction: column;
+  align-items: flex-end;
+}
+@media (max-width: 768px) {
+    .header-container {
+        max-height: none;
+    }
+    .header-content-custom {
+        flex-direction: column;
+    }
+    .navbar-toggler {
+        display: block;
+    }
+    #navbarMenu {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+        text-align: center;
+        padding-top: 10px;
+    }
+    .icon-img {
+        width: 25px;
+        height: 25px;
+    }
 }
 
 /* Enlaces y estilos */

@@ -82,6 +82,12 @@ body {
   }
 }
 
+@media (max-width: 768px) { 
+  .pageWrapper {
+    padding: 0;
+  }
+}
+
 .container {
   max-width: $boxedWidth;
   padding-left: 24px;

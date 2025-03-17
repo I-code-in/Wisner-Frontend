@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BannerImagesService } from 'src/app/services/banner-images.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-flyers',
+  imports: [CommonModule],
   templateUrl: './flyers.component.html',
   styleUrls: ['./flyers.component.css']
 })

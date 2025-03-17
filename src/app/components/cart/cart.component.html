@@ -1,44 +1,94 @@
 <div class="container">
-  <div *ngFor="let item of cartItems" class="row justify-content-between mb-2">
-    <div class="col-12 col-md-3 text-center mb-2 mb-md-0">
-      <img [src]="'data:image/png;base64,' + item.product.image" 
-           alt="{{ item.product.name }}" class="img-fluid rounded product-image " />
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+
+    <!-- Tabla (Solo para pantallas grandes) -->
+    <div class="table-responsive d-none d-md-block">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td>
+              <img [src]="'data:image/png;base64,' + item.product.image" 
+                   alt="{{ item.product.name }}" 
+                   class="product-img"/>
+            </td>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.value }} Gs.</td>
+            <td>
+              <input type="number" [value]="item.quantity" (change)="updateQuantity(item.product.id, $event)"
+                     class="form-control input-quantity" min="1"/>
+            </td>
+            <td>{{ item.product.value * item.quantity }} Gs.</td>
+            <td>
+              <button class="btn custom-btn btn-sm" (click)="removeItem(item.product.id)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-12 col-md-5 text-center text-md-start">
-      <h6 class="mb-1">{{ item.product.name }}</h6>
-      <p class="mb-1"><strong>Precio:</strong> {{ item.product.value }} Gs.</p>
-      <p class="mb-1"><strong>Total:</strong> {{ item.product.value * item.quantity }} Gs.</p>
-    </div>
-    <div class="col-12 col-md-4 d-flex justify-content-between mt-2 mt-md-0">
-      <button class="btn btn-sm custom-btn me-2" (click)="decreaseQuantity(item.product.id)">-</button>
-      <span class="mx-2">{{ item.quantity }}</span>
-      <button class="btn btn-sm custom-btn ms-2" (click)="increaseQuantity(item.product.id)">+</button>
-      <button class="btn btn-sm custom-btn ms-3" (click)="removeItem(item.product.id)">Eliminar</button>
-    </div>
-  </div>
-  <div class="my-3">
-    <h5>Subtotal: {{ getTotal() }} Gs.</h5>
-  </div>
-  <div class="d-flex justify-content-between mt-3">
-    <button class="btn custom-btn" (click)="clearCart()">Vaciar Carrito</button>
-    <button class="btn custom-btn" (click)="toggleForm()">
-      {{ !showForm ? 'Agregar Cupón' : 'Quitar Cupón' }}
-    </button>
-  </div>
-  <div *ngIf="showForm" class="mt-3">
-    <h4>Agregar Cupón</h4>
-    <form>
-      <div class="mb-3">
-        <label for="email" class="form-label">Correo Electrónico</label>
-          <input type="email" id="email" class="form-control" [(ngModel)]="formData.email" name="email" />
+
+    <!-- Lista de tarjetas (Solo para móviles) -->
+    <div class="d-block d-md-none">
+      <div class="card mb-3" *ngFor="let item of cartItems">
+        <div class="row g-0 align-items-center">
+          <div class="col-3">
+            <img [src]="'data:image/png;base64,' + item.product.image" 
+                 alt="{{ item.product.name }}" 
+                 class="img-fluid rounded-start"/>
+          </div>
+          <div class="col-9">
+            <div class="card-body p-2">
+              <h5 class="card-title">{{ item.product.name }}</h5>
+              <p class="card-text"><strong>Precio:</strong> {{ item.product.value }} Gs.</p>
+              <p class="card-text"><strong>Total:</strong> {{ item.product.value * item.quantity }} Gs.</p>
+              <div class="d-flex align-items-center">
+                <button class="btn btn-sm custom-btn me-2" (click)="decreaseQuantity(item.product.id)">-</button>
+                <span>{{ item.quantity }}</span>
+                <button class="btn btn-sm custom-btn ms-2" (click)="increaseQuantity(item.product.id)">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
+    </div>
+
+    <!-- Controles del carrito -->
+    <div class="d-flex flex-column flex-md-row justify-content-between">
+      <button class="btn custom-btn mb-2 mb-md-0" (click)="clearCart()">Vaciar Carrito</button>
+      <button class="btn custom-btn" (click)="toggleForm()">{{ !showForm ? 'Agregar Cupón' : 'Quitar Cupón' }}</button>
+    </div>
+
+    <!-- Formulario de Cupón -->
+    <div *ngIf="showForm" class="pt-4">
+      <h4>Agregar Cupón</h4>
+      <form>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <input type="text" id="email" class="form-control" [(ngModel)]="formData.email" name="email"/>
+        </div>
+        <div class="mb-3">
           <label for="cupon" class="form-label">Código de Cupón</label>
-          <input type="text" id="cupon" class="form-control" [(ngModel)]="formData.cupon" name="cupon" required />
-      </div>
-    </form>
+          <input type="text" id="cupon" class="form-control" [(ngModel)]="formData.cupon" name="cupon" required/>
+        </div>
+      </form>
+    </div>
+
   </div>
+
+  <!-- Mensaje cuando el carrito está vacío -->
   <ng-template #emptyCart>
-    <p class="mt-3">El carrito está vacío.</p>
+    <p class="text-center">El carrito está vacío.</p>
   </ng-template>
+
 </div>

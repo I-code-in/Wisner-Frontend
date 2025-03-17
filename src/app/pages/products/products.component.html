@@ -22,17 +22,25 @@
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase text-white">{{ product.name }}</h5>
                                 <p class="card-text text-white" style="font-size: 1.2rem;">{{ product.value }} Gs</p>
-                            <div *ngIf="getQuantity(product) === 0; else inCart">
-                                <button class="btn custom-btn" style="border-radius: 15px;" (click)="addToCart(product)">Agregar al carrito</button>
-                            </div>
-                            <ng-template #inCart>
-                                <div class="cart-container d-flex justify-content-center align-items-center w-100 gap-2">
-                                    <button class="btn custom-btn btn-sm" (click)="removeFromCart(product)">-</button>
-                                    <span class="quantity-display text-white">{{ getQuantity(product) }} un.</span>
-                                    <button class="btn custom-btn btn-sm" (click)="addToCart(product)">+</button>
+                        
+                                <div class="d-md-flex gap-2">
+                                    <div *ngIf="getQuantity(product) === 0; else inCart" class="flex-grow-1">
+                                        <button class="btn custom-btn" style="border-radius: 15px;" (click)="addToCart(product)">
+                                            Agregar al carrito
+                                        </button>
+                                    </div>
+                                    <ng-template #inCart>
+                                        <div class="cart-container d-flex justify-content-center align-items-center gap-2 flex-grow-1">
+                                            <button class="btn custom-btn btn-sm" (click)="removeFromCart(product)">-</button>
+                                            <span class="quantity-display text-white">{{ getQuantity(product) }} un.</span>
+                                            <button class="btn custom-btn btn-sm" (click)="addToCart(product)">+</button>
+                                        </div>
+                                    </ng-template>
+                                    <button class="btn custom-btn flex-grow-1" style="border-radius: 15px;" (click)="openModal(ver_producto, product)">
+                                        Ver producto
+                                    </button>
                                 </div>
-                            </ng-template>
-                            <button class="btn custom-btn" style="border-radius: 15px;" (click)="openModal(ver_producto, product)">Ver producto</button>
+                            </div>
                         </div>
                     </div>
                 </div>
