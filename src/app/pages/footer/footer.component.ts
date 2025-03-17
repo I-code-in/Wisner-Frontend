@@ -16,11 +16,19 @@ import { ToastService } from 'src/app/services/toast.service';
 export class FooterComponent {
 
   scrollTo(id: string) {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth'});
-  
-    };
+    const targetElement = document.getElementById(id);
+
+    if (targetElement) {
+        const offset = (13 / 100) * window.innerHeight; // 13 equivale al 13% de la pantalla
+        //const offset = 10
+        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth', // Desplazamiento suave
+        });
+    }
   }
   email: string = '';
   mensajeError: string = '';  
