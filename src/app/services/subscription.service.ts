@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class SubscriptionService {
   private apiUrl = environment.BACKEND;  
-
   constructor(private http: HttpClient) {}
 
   suscribirse(email: string): Observable<any> {

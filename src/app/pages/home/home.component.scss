@@ -5,7 +5,7 @@
     max-width: 100% !important;
 }
 .container > * {
-    height: 100vh;
+    height: auto;
     width: 100%;
     flex-shrink: 0;
     box-sizing: border-box;
@@ -16,7 +16,7 @@
     min-height: 87vh;
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: 0 !important;
 }
 #tour-chocolates{
     background-color: #e4bc89;

@@ -1,99 +1,107 @@
 <div class="container-fluid app-topstrip header-container">
     <div class="row align-items-center justify-content-between header-content-custom">
         <!-- Logo -->
-        <div class="col-auto">
+        <div class="col-auto d-flex align-items-center">
+            <!-- Botón Menú Hamburguesa en Móviles -->
+            <button class="navbar-toggler d-lg-none d-md-none me-3" type="button" (click)="toggleMenu()">
+                <i class="fas fa-bars fs-2"></i>
+            </button>
             <img src="./assets/images/logos/logo.png" class="align-middle m-2" alt="logo" style="height: 8vh;" />
+            <button class="navbar-toggler d-lg-none d-md-none me-3" type="button" (click)="openModal(carrito)">
+                <img src="../../../../assets/images/icons/Shopping cart (1).svg" alt="Shopping cart" class="icon-img" />
+            </button>
         </div>
 
-        <!-- Navegación -->
-        <div class="col">
-            <div class="d-flex align-items-center justify-content-end flex-wrap">
-                <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('inicio')">
-                    <span class="text-aventa fs-4">Inicio</span>
+        
+
+        <!-- Contenedor de Navegación -->
+        <div class="col collapse d-lg-flex" [ngClass]="{'show': menuOpen}" id="navbarMenu">
+            <div class="d-flex align-items-center justify-content-end flex-wrap flex-column flex-lg-row">
+                <a class="text-button px-3" (click)="scrollToComponent('inicio')">
+                    <span class="text-aventa fs-5">Inicio</span>
                 </a>
-                <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('chocolates')">
-                    <span class="text-aventa fs-4">Chocolates</span>
+                <a class="text-button px-3" (click)="scrollToComponent('chocolates')">
+                    <span class="text-aventa fs-5">Chocolates</span>
                 </a>
-                <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('quienes-somos')">
-                    <span class="text-aventa fs-4">¿Quiénes somos?</span>
+                <a class="text-button px-3" (click)="scrollToComponent('quienes-somos')">
+                    <span class="text-aventa fs-5">¿Quiénes somos?</span>
                 </a>
-                <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('tour-chocolates')">
-                    <span class="text-aventa fs-4">Tour de chocolates</span>
+                <a class="text-button px-3" (click)="scrollToComponent('tour-chocolates')">
+                    <span class="text-aventa fs-5">Tour de chocolates</span>
                 </a>
-                <a class="d-none d-lg-flex text-button px-3" (click)="scrollToComponent('contacto')">
-                    <span class="text-aventa fs-4">Contacto</span>
+                <a class="text-button px-3" (click)="scrollToComponent('contacto')">
+                    <span class="text-aventa fs-5">Contacto</span>
                 </a>
-                <!-- Búsqueda -->
-                <div class="search-wrapper position-relative">
-                    <input
-                        *ngIf="isSearchActive"
-                        type="text"
-                        class="form-control search-input mx-2"
-                        placeholder="Buscar..."
-                        (blur)="toggleSearch()"
-                    />
-                    <a class="text-button" (click)="toggleSearch()">
-                        <img src="../../../../assets/images/icons/search (1).svg" alt="search" class="icon-img" />
-                    </a>
-                </div>
-    
-                <!-- Carrito -->
-                <a class="text-button" (click)="openModal(carrito)">
-                    <img src="../../../../assets/images/icons/Shopping cart (1).svg" alt="Shopping cart" class="icon-img" />
-                </a>
-    
-                <!-- Usuario -->
-                <div class="dropdown" [ngClass]="{'text-button':!username}">
-                    <a class="dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
-                        <ng-container *ngIf="username; else defaultUserIcon">
-                            <div class="text-aventa user-icon">{{ username[0] }}</div>
-                        </ng-container>
-                        <ng-template #defaultUserIcon>
-                            <img src="../../../../assets/images/icons/User (1).svg" alt="User" class="icon-img" />
-                        </ng-template>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" data-bs-container="body">
-                        <ng-container *ngIf="username; else guestOptions">
-                            <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
-                        </ng-container>
-                        <ng-template #guestOptions>
-                            <li><a class="dropdown-item" (click)="openModal(login,'md')">Ingresar</a></li>
-                            <li><a class="dropdown-item" (click)="openModal(register,'md')">Registrarse</a></li>
-                        </ng-template>
-                    </ul>
+
+                <!-- Búsqueda y Carrito -->
+                <div class="d-flex align-items-center mt-2 mt-lg-0">
+                    <div class="search-wrapper position-relative me-2">
+                        <input *ngIf="isSearchActive" type="text" class="form-control search-input mx-2" 
+                               placeholder="Buscar..." (blur)="toggleSearch()" />
+                        <a class="text-button" (click)="toggleSearch()">
+                            <img src="../../../../assets/images/icons/search (1).svg" alt="search" class="icon-img" />
+                        </a>
+                    </div>
+
+                        <a class="me-2 text-button d-none d-lg-block" (click)="openModal(carrito)">
+                            <img src="../../../../assets/images/icons/Shopping cart (1).svg" alt="Shopping cart" class="icon-img" />
+                        </a>
+                    
+
+                    <!-- Usuario -->
+                    <div class="dropdown" [ngClass]="{'text-button':!username}">
+                        <a class="dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <ng-container *ngIf="username; else defaultUserIcon">
+                                <div class="text-aventa user-icon">{{ username[0] }}</div>
+                            </ng-container>
+                            <ng-template #defaultUserIcon>
+                                <img src="../../../../assets/images/icons/User (1).svg" alt="User" class="icon-img" />
+                            </ng-template>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <ng-container *ngIf="username; else guestOptions">
+                                <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
+                            </ng-container>
+                            <ng-template #guestOptions>
+                                <li><a class="dropdown-item" (click)="openModal(login,'md')">Ingresar</a></li>
+                                <li><a class="dropdown-item" (click)="openModal(register,'md')">Registrarse</a></li>
+                            </ng-template>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <ng-template #carrito let-modal>
     <div class="modal-header">
-      <h5 class="modal-title" id="modal-basic-title">Mi Carrito</h5>
-      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
-    </div>
-    <div class="modal-body">
-      <app-cart></app-cart>
-    </div>
-    <div class="modal-footer">
+      <h5 class="modal-title">Mi Carrito</h5>
+      <button type="button" class="btn-close btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+            </div>
+            <div class="modal-body">
+                <app-cart></app-cart>
+            </div>
+            <div class="modal-footer">
         <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Cancelar</button>
         <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Siguiente</button>
     </div>
 </ng-template>
 <ng-template #login let-modal>
-    <div class="modal-header">
-      <h5 class="modal-title" id="modal-basic-title">Ingresar</h5>
-      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
-    </div>
-    <div class="modal-body">
-      <app-login (refreshRequested)="refreshData()" [register]="false"></app-login>
+            <div class="modal-header">
+                <h5 class="modal-title">Ingresar</h5>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+            </div>
+            <div class="modal-body">
+                <app-login (refreshRequested)="refreshData()" [register]="false"></app-login>
     </div>
 </ng-template>
 <ng-template #register let-modal>
-    <div class="modal-header">
-      <h5 class="modal-title" id="modal-basic-title">Registrarse</h5>
-      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
-    </div>
-    <div class="modal-body">
-      <app-login (refreshRequested)="refreshData()" [register]="true"></app-login>
+            <div class="modal-header">
+      <h5 class="modal-title" id="modal-title">Registrarse</h5>
+      <button type="button" class="btn-close btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+            </div>
+            <div class="modal-body">
+                <app-login (refreshRequested)="refreshData()" [register]="true"></app-login>
     </div>
 </ng-template>

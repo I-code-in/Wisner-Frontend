@@ -3,6 +3,8 @@
     padding: 20px ;
     cursor: default;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 // Titulos
@@ -64,6 +66,29 @@ input::placeholder {
     color: #ecc74b;
 }
 
+
+@media (max-width: 768px) {
+   
+    .suscription-title, .menu-title, .contact-title {
+        font-size: 1.5rem;
+    }
+    
+    .menu-item, .contact-item {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) { /* Para iPhone 12 y móviles pequeños */
+  
+    .suscription-title, .menu-title, .contact-title {
+        font-size: 1.2rem;
+    }
+    
+    .menu-item, .contact-item {
+        font-size: 0.8rem;
+    }  
+}
+  
 
 
 

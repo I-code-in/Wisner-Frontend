@@ -6,6 +6,7 @@
     background-color: white; /* Color de fondo */
     color: #6E4A31; /* Color del texto */
     border: none;
+    margin: 5px;
   }
   
 .custom-btn:hover {
@@ -27,4 +28,26 @@
 .modal-footer{
     background-color: white;
     color: #6E4A31;
+}
+
+@media (max-width: 576px) {
+    .modal-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .modal-body {
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+    .cart-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .quantity-display {
+        min-width: 30px;
+        text-align: center;
+    }
 }

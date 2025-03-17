@@ -1,24 +1,84 @@
 .container {
-    min-width: 1440px;
-    min-height: 800px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+  //max-width: 100%;
+  justify-content: center;
+  align-items: center; 
+  height: 80%;
+  overflow: hidden;
+  min-width: 90vh;
+  min-height: 80vh;
+}
+
+.row {
+  width: 100%;
+  gap: 50px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
   
-  .text-section {
-    color: #6E4A31;
-  }
+.titulo{
+  font-family: Maragsa;
+  color: #6E4A31;
+  font-weight: bolder;
+  font-size: 1.8rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.texto{
+  font-family: Aventa;
+  text-align: justify;
+  flex-wrap: wrap;
+  max-width: 500px;
+  font-size: 1rem;
+  color: #6E4A31;
+  text-align: justify;
+  max-width: fit-content;
+  font-size: 1rem;
+}
+
+img.logo{
+  max-width: 100%;
+  height: auto;
   
+}
+
+@media (max-width: 768px) { /* Para tablets y móviles */
+  .container {
+    min-width: auto;
+    min-height: auto;
+    max-width: 100%;
+  }
   .title {
-    font-size: 1.8rem;
-    font-family: Maragsa;
+      font-size: 1.5rem;
   }
   
   .text {
-    font-size: 1rem;
-    color: #6E4A31;
-    font-family: Aventa;
+      font-size: 0.9rem;
+      text-align: center !important; 
+  }
+  .logo {
+    width: 80%;
+  }
+}
+
+@media (max-width: 576px) { /* Para iPhone 12 y móviles pequeños */
+  .container {
+    min-width: auto;
+    min-height: auto;
+    max-width: 100%;
+  }
+  .title {
+      font-size: 1rem;
   }
   
-  img.logo{
-    max-height: 400px;
-    max-width: 800px;
+  .text {
+      font-size: 0.5rem;
   }
+  
+  .logo {
+      width: 80%;
+  }
+}

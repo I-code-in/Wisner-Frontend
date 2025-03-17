@@ -15,6 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AppTopstripComponent {
     isSearchActive: boolean = false;
     username: string | null = null;
+    menuOpen = false;
     constructor(
         private modalService: NgbModal,
     ) {};
@@ -26,6 +27,10 @@ export class AppTopstripComponent {
         this.loadUser();
     }
 
+    toggleMenu() {
+        this.menuOpen = !this.menuOpen;
+    }
+      
     scrollToComponent(targetId: string): void {
         const targetElement = document.getElementById(targetId);
 

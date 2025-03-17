@@ -1,5 +1,8 @@
 <div class="container">
-    <div *ngIf="cartItems.length > 0; else emptyCart">
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+
+    <!-- Tabla (Solo para pantallas grandes) -->
+    <div class="table-responsive d-none d-md-block">
       <table class="table">
         <thead>
           <tr>
@@ -14,18 +17,15 @@
         <tbody>
           <tr *ngFor="let item of cartItems">
             <td>
-              <img [src]="'data:image/png;base64,' + item.product.image" alt="{{ item.product.name }}" width="50" />
+              <img [src]="'data:image/png;base64,' + item.product.image" 
+                   alt="{{ item.product.name }}" 
+                   class="product-img"/>
             </td>
             <td>{{ item.product.name }}</td>
             <td>{{ item.product.value }} Gs.</td>
             <td>
-              <input
-                type="number"
-                [value]="item.quantity"
-                (change)="updateQuantity(item.product.id, $event)"
-                class="form-control"
-                min="1"
-              />
+              <input type="number" [value]="item.quantity" (change)="updateQuantity(item.product.id, $event)"
+                     class="form-control input-quantity" min="1"/>
             </td>
             <td>{{ item.product.value * item.quantity }} Gs.</td>
             <td>
@@ -36,33 +36,59 @@
           </tr>
         </tbody>
       </table>
-      <div class="d-flex justify-content-between">
-        <button class="btn custom-btn" (click)="clearCart()">Vaciar Carrito</button>
-        <button class="btn custom-btn" (click)="toggleForm()">{{ !showForm ? 'Agregar Cupón' : 'Quitar Cupón' }}</button>
-      </div>
-      
+    </div>
 
-      <div *ngIf="!showForm; else cupon" class="pt-4">
-
+    <!-- Lista de tarjetas (Solo para móviles) -->
+    <div class="d-block d-md-none">
+      <div class="card mb-3" *ngFor="let item of cartItems">
+        <div class="row g-0 align-items-center">
+          <div class="col-3">
+            <img [src]="'data:image/png;base64,' + item.product.image" 
+                 alt="{{ item.product.name }}" 
+                 class="img-fluid rounded-start"/>
+          </div>
+          <div class="col-9">
+            <div class="card-body p-2">
+              <h5 class="card-title">{{ item.product.name }}</h5>
+              <p class="card-text"><strong>Precio:</strong> {{ item.product.value }} Gs.</p>
+              <p class="card-text"><strong>Total:</strong> {{ item.product.value * item.quantity }} Gs.</p>
+              <div class="d-flex align-items-center">
+                <button class="btn btn-sm custom-btn me-2" (click)="decreaseQuantity(item.product.id)">-</button>
+                <span>{{ item.quantity }}</span>
+                <button class="btn btn-sm custom-btn ms-2" (click)="increaseQuantity(item.product.id)">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <ng-template #emptyCart>
-      <p>El carrito está vacío.</p>
-    </ng-template>
-    <ng-template #cupon>
-      <div class="pt-4">
-        <h4>Agregar Cupón</h4>
-        <form>
-          <div class="mb-3">
-            <label for="name" class="form-label">Correo Electrónico</label>
-            <input type="text" id="name" class="form-control" [(ngModel)]="formData.email" name="email" />
-          </div>
-  
-          <div class="mb-3">
-            <label for="email" class="form-label">Codigo de Cupón</label>
-            <input type="email" id="email" class="form-control" [(ngModel)]="formData.cupon" name="cupon" required />
-          </div>
-        </form>
-      </div>
-    </ng-template>
+
+    <!-- Controles del carrito -->
+    <div class="d-flex flex-column flex-md-row justify-content-between">
+      <button class="btn custom-btn mb-2 mb-md-0" (click)="clearCart()">Vaciar Carrito</button>
+      <button class="btn custom-btn" (click)="toggleForm()">{{ !showForm ? 'Agregar Cupón' : 'Quitar Cupón' }}</button>
+    </div>
+
+    <!-- Formulario de Cupón -->
+    <div *ngIf="showForm" class="pt-4">
+      <h4>Agregar Cupón</h4>
+      <form>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <input type="text" id="email" class="form-control" [(ngModel)]="formData.email" name="email"/>
+        </div>
+        <div class="mb-3">
+          <label for="cupon" class="form-label">Código de Cupón</label>
+          <input type="text" id="cupon" class="form-control" [(ngModel)]="formData.cupon" name="cupon" required/>
+        </div>
+      </form>
+    </div>
+
   </div>
+
+  <!-- Mensaje cuando el carrito está vacío -->
+  <ng-template #emptyCart>
+    <p class="text-center">El carrito está vacío.</p>
+  </ng-template>
+
+</div>

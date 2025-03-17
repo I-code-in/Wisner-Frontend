@@ -55,4 +55,23 @@ export class CartComponent implements OnInit {
     console.log('Formulario enviado:', this.formData);
     alert('Formulario enviado con éxito');
   }
+
+  getTotal(): number {
+    return this.cartItems.reduce((sum, item) => sum + item.product.value * item.quantity, 0);
+  }
+  
+  increaseQuantity(productId: number): void {
+    const item = this.cartItems.find(item => item.product.id === productId);
+    if (item) {
+      item.quantity++;
+    }
+  }
+  
+  decreaseQuantity(productId: number): void {
+    const item = this.cartItems.find(item => item.product.id === productId);
+    if (item && item.quantity > 1) {
+      item.quantity--;
+    }
+  }
+  
 }
