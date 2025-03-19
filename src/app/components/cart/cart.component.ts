@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/app/interfaces/products';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, FormBuilder , ReactiveFormsModule} from '@angular/forms';
 
 interface CartItem {
   product: Product;
@@ -11,7 +11,7 @@ interface CartItem {
 
 @Component({
   selector: 'app-cart',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -19,10 +19,16 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   showForm: boolean = false;
   formData = { cupon: '', email: '' };
-  constructor(private cartService: CartService) {}
+  formulario: FormGroup;
+
+  constructor(
+    private cartService: CartService,
+    private fb: FormBuilder,
+  ) {}
 
   ngOnInit(): void {
     this.loadCart();
+    
   }
 
   loadCart() {
@@ -49,6 +55,7 @@ export class CartComponent implements OnInit {
     this.showForm = !this.showForm;
     this.formData.cupon = '';
     this.formData.email = '';
+    this.formulario.reset();
   }
 
   submitForm() {

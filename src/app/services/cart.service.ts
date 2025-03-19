@@ -1,14 +1,27 @@
-import { Injectable } from '@angular/core';
+import { forwardRef, Injectable } from '@angular/core';
 import { Product } from '../interfaces/products';
+import { environment } from 'src/environments/environment';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { ToastService } from './toast.service';
+import { HttpClient } from '@angular/common/http';
+import { Validators } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { Inject } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+ 
   private cartKey = 'shopping_cart';
+  
 
-  constructor() { }
+  constructor(
+    //private cartService: CartService,
+    private toastService: ToastService,
+    private http: HttpClient
+  ){}
 
   getCart(): { product: Product; quantity: number }[] {
     const cart = localStorage.getItem(this.cartKey);
@@ -65,4 +78,8 @@ export class CartService {
     else
       return 0;
   }
+
+  
+  
+
 }
