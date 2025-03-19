@@ -75,12 +75,18 @@
       <form>
         <div class="mb-3">
           <label for="email" class="form-label">Correo Electrónico</label>
-          <input type="text" id="email" class="form-control" [(ngModel)]="formData.email" name="email"/>
+          <input type="email" id="email" class="form-control" formControlName="email" />
+          <small class="text-danger" *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['required']">El email es requerido</small>
+          <small class="text-danger" *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['email']">El email no es válido</small>
         </div>
         <div class="mb-3">
           <label for="cupon" class="form-label">Código de Cupón</label>
-          <input type="text" id="cupon" class="form-control" [(ngModel)]="formData.cupon" name="cupon" required/>
+          <input type="text" id="cupon" class="form-control" formControlName="cupon" />
+          <small class="text-danger" *ngIf="formulario.get('cupon')?.touched && formulario.get('cupon')?.errors?.['required']">El cupón es requerido</small>
         </div>
+        <!--<div class="container-contact100-btn text-center mt-3">
+          <button type="submit" class="contact100-form-btn" [disabled]="formulario.invalid">Enviar</button>
+        </div>-->
       </form>
     </div>
 

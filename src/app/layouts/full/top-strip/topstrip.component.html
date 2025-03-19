@@ -78,13 +78,18 @@
     <div class="modal-header">
       <h5 class="modal-title">Mi Carrito</h5>
       <button type="button" class="btn-close btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
-            </div>
-            <div class="modal-body">
-                <app-cart></app-cart>
-            </div>
-            <div class="modal-footer">
+    </div>
+    <div class="modal-body">
+        <app-cart></app-cart>
+        <div *ngIf="showForm" class="pt-4">
+            <h4>Agregar Cupón xd</h4>
+            <form [formGroup]="formulario">
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
         <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Cancelar</button>
-        <button type="button" class="btn custom-btn" (click)="modal.close('Close click')">Siguiente</button>
+        <button type="button" class="btn custom-btn" (click)="validarCupon()">Siguiente</button>
     </div>
 </ng-template>
 <ng-template #login let-modal>
@@ -105,3 +110,6 @@
                 <app-login (refreshRequested)="refreshData()" [register]="true"></app-login>
     </div>
 </ng-template>
+
+
+
